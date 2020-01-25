@@ -1,0 +1,117 @@
+//CODE FOR PARENTHESIS MATCHING
+#include<stdio.h>
+#include<stdlib.h>
+#define bool int
+struct node
+{
+    char data;
+    struct node *next;
+};
+void push (struct node** top_ref,int newdata);
+int pop (struct node** top_ref);
+bool is_matching(char char1,char char2)
+{
+    if(char1=="(")
+        return 1;
+    else
+        return 0;
+}
+bool are_parenthesis_match(char exp[])
+{
+    int i=0;
+    struct node *stack=NULL;
+    while(exp[i])
+    {
+        if(exp[i]=="(")
+            push(&stack,exp[i]);
+        else
+        {
+            if(stack==NULL)
+                return 0;
+            else if(!is_matching(pop(&stack),exp[i]))
+                return 0;
+        }
+        i++;
+    }
+    if(stack==NULL)
+        return 1;
+    else
+        return 0;
+}
+int main()
+{
+    char exp[100];
+    printf("Enter the input\n");
+    scanf("%s",exp);
+    if(are_parenthesis_match(exp))
+        printf("Balanced Parenthesis\n");
+    else
+        printf("Unbalanced Parenthesis\n");
+    return 0;
+}
+void push(struct node** top_ref,int newdata)
+{
+    struct node* newnode=(struct node*)malloc(sizeof(struct node));
+    if (newnode==NULL)
+    {
+        printf("Stack Overflow\n");
+        getchar();
+        exit(0);
+    }
+    newnode->data=newdata;
+    newnode->next=(*top_ref);
+    (*top_ref)=newnode;
+}
+int pop(struct node** top_ref)
+{
+    char res;
+    struct node* top;
+    if(*top_ref==NULL)
+    {
+        printf("Stack Overflow");
+        getchar();
+        exit(0);
+    }
+    else
+    {
+        top=*top_ref;
+        res=top->next;
+        *top_ref=top->next;
+        free(top);
+        return res;
+    }
+}
+
+
+
+/*IMPLEMENTATION OF QUEUE USING STACK:
+
+ Let queue to be implemented be q_new and stacks used to implement q be stack1 and stack2.
+ In this method, in en-queue operation, the new element is entered at the top of stack1.
+ In de-queue operation, if stack2 is empty then all the elements are moved to stack2 and finally top of stack2 is returned.
+ enQueue(q, x)
+ 1) Push x to stack1 (assuming size of stacks is unlimited).
+ Here time complexity will be O(1) deQueue(q) 1) If both stacks are empty then error.
+ 2) If stack2 is empty While stack1 is not empty xx, push everything from stack1 to stack2.
+ 3) Pop the element from stack2 and return it. Here time complexity will be O(n)
+
+APPLICATIONS OF STACK:
+1. Syntax Parsing        :Many compilers use a stack for parsing the syntax of expressions, program blocks etc. before translating into low level code.
+2. Backtracking          :Suppose we are finding a path for solving maze problem.
+	                  We choose a path and after following it we realize that it is wrong.
+                          Now we need to go back to the beginning of the path to start with new path. This can be done with the help of stack.
+3. Parenthesis Checking  :Stack is used to check the proper opening and closing of parenthesis. 
+4. String Reversal       :Stack is used to reverse a string. We push the characters of string one by one into stack and then pop character from stack.
+
+APPLICATIONS OF QUEUE:
+
+1.Queue is used in BFS(Breadth First Search) algorithm. It helps in traversing a tree or graph.
+2.Queue is also used by Operating systems for job scheduling.
+3.Queue is used in networking to handle congestion.
+4. Breadth First search in a Graph .It is an algorithm for traversing or searching graph data structures.
+   It starts at some arbitrary node of a graph and explores the neighbor nodes first, before moving to the next level neighbors.
+   This Algorithm uses Queue data structure.
+5.Handling of interrupts in real-time systems.
+   The interrupts are handled in the same order as they arrive, First come first served.*/
+
+
