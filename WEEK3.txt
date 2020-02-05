@@ -1,0 +1,42 @@
+
+EXPLAINING THE CODE TO FIND THE NUMBER OF CONNECTED COMPONENTS IN A GRAPH:
+1.Initialize all vertices as not visited.
+2) Do following for every vertex 'v'.
+       (a) If 'v' is not visited before, call the function to visit it.
+       (b) Print new line character
+1) Mark 'v' as visited.
+2) Print 'v'
+3) Do following for every adjacent 'u' of 'v'.
+     If 'u' is not visited, then recursively call the function written to visit and  print it. 
+:Time complexity of above solution is O(V + E) .
+
+
+TIME COMPLEXITY FOR VARIOUS DATA STRUCTURES:
+1)LINKED LIST:
+Inserting: O(1), if done at the head, O(n) if anywhere else since we have to reach that position by traveseing the linkedlist linearly.
+Deleting: O(1), if done at the head, O(n) if anywhere else since we have to reach that position by traveseing the linkedlist linearly.
+Searching: O(n)
+2)STACK:
+Push: O(1)
+Pop: O(1)
+Top: O(1)
+Search (Something like lookup, as a special operation): O(n) (I guess so)
+3)QUEUE:
+Enqueue: O(1)
+Dequeue: O(1)
+Size: O(1)
+BINARY SEARCH TREE:
+Insert, delete and search: Average case: O(log n), Worst Case: O(n)
+GRAPHS:
+For both DFS and BFS:
+By Adjacency matrix:O(V^2)
+By Adjacency list:O(V+E);where V:no: of vertices and E:no: of edges
+
+DFS AND BFS PRINTING ORDER FOR THE GIVEN GRAPH DIAGRAM:
+BFS:
+ABCDFGHEIJ
+DFS:
+ABDCEJFIGH
+
+
+ 
